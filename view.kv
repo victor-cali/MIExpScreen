@@ -1,16 +1,14 @@
 #:kivy 2.0.0
 
-<MyLayout>
-
+<SettingsWindow>:
+    name: "settings_window"
     BoxLayout:
         padding: (10, 10, 10, 10)
         orientation: "horizontal"
         spacing: 10
         size: root.width, root.height
-
         BoxLayout:
             padding: (10, 200, 10, 180)
-            
             orientation: "vertical"
             GridLayout:
                 padding: (0, 0, 0, 50)
@@ -20,6 +18,7 @@
                     font_size: 30
                     text: "MI Task Duration:"
                 TextInput:
+                    id: mi_duration
                     font_size: 30
                     multiline: False
                     text: "4"
@@ -27,17 +26,16 @@
                     font_size: 30
                     text: "Number of trials:"
                 TextInput:
+                    id: trials_num
                     font_size: 30
                     multiline: False
                     text: "10"
-
             BoxLayout:
                 orientation: "vertical"
                 spacing: 50
                 Label:
                     font_size: 30
                     text: "Break Interval:"
-                
                 GridLayout:
                     cols: 4
                     rows: 1
@@ -45,6 +43,7 @@
                         font_size: 30
                         text: "Low:"
                     TextInput:
+                        id: low_lim
                         font_size: 30
                         multiline: False
                         text: "1.5"
@@ -52,10 +51,10 @@
                         font_size: 30
                         text: "Top:"
                     TextInput:
+                        id: top_lim
                         font_size: 30
                         multiline: False
                         text: "2.5"
-
         BoxLayout:
             padding: (10, 10, 10, 10)
             orientation: "vertical"
@@ -68,7 +67,6 @@
             FileChooserIconView:
                 id: file_chooser
                 dirselect: True
-                on_selection: app.get_selection(file_chooser.selection)
             AnchorLayout:
                 anchor_x: 'center'
                 anchor_y: 'center'
@@ -78,4 +76,14 @@
                     height: root.height*0.1
                     size_hint_x: None
                     width: root.height*0.2
+                    on_press: app.set_experiment()
                 
+<ExperimentWindow>:
+    name: "experiment_window"
+    AnchorLayout:
+        size: root.width, root.height
+        anchor_x: 'center'
+        anchor_y: 'center'
+        Image:
+            id: screen_img
+            
